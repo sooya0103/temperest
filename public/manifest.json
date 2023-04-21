@@ -1,0 +1,13 @@
+{
+  "name": "TENPERST",
+  "short_name": "TENPERST",
+  "description": "TENPERST",
+  "start_url": "/saisho.html",
+  "display": "standalone",
+  "lang": "ja",
+  "dir": "auto",
+  "orientation": "any",
+  "theme_color": "#2196f3",
+  "background_color": "#2196f3",
+  "scope": "/"
+}

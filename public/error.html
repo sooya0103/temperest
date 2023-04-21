@@ -1,0 +1,54 @@
+<h1>体感温度を知りたい都道府県が設定されていません。<br>前の画面へ戻りもう一度設定しなおしてください。</h1>
+<div style="text-align: center">
+    <a href="javascript:hoge()" class="button">前の画面へ戻る</a>
+</div>
+<body background="test.jfif"></body>
+<script>
+    function hoge(){
+        location.href='./tenki.html'
+    }
+</script>
+<style>
+h1{
+    text-align: center;
+    margin-top: 150px;
+    font-size: 35px;
+}
+
+        .button {
+            display: inline-block;
+            border-radius: 20%;
+            /* 角丸       */
+            font-size: 24pt;
+            /* 文字サイズ */
+            text-align: center;
+            /* 文字位置   */
+            cursor: pointer;
+            /* カーソル   */
+            padding: 12px 13px;
+            /* 余白       */
+            background: #cccccc;
+            /* 背景色     */
+            color: #595959;
+            /* 文字色     */
+            line-height: 1em;
+            /* 1行の高さ  */
+            transition: .3s;
+            /* なめらか変化 */
+            box-shadow: 1px 1px 12px #666666;
+            /* 影の設定 */
+            border: 2px solid #cccccc;
+            /* 枠の指定 */
+            margin: 100px;
+            font-family: 'M PLUS Rounded 1c', sans-serif;
+        }
+
+        .button:hover {
+            box-shadow: none;
+            /* カーソル時の影消去 */
+            color: #cccccc;
+            /* 背景色     */
+            background: #595959;
+            /* 文字色     */
+        }
+</style>

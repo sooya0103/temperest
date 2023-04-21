@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<h1 id="edit-area"></h1>
+
+<head>
+    <meta charset="utf-8">
+    <script src="https://www.gstatic.com/firebasejs/5.8.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.8.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.8.1/firebase-auth.js"></script>
+    <script src="./js/config.js"></script>
+</head>
+
+<body background="test.jfif">
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=M+PLUS+Rounded+1c');
+
+        h1 {
+            text-align: center;
+            font-family: 'M PLUS Rounded 1c', sans-serif;
+            margin: 50px;
+            font-size: 40px;
+        }
+
+        .center {
+            text-align: center;
+        }
+
+        /* ↓ボタンの形を変える処理 */
+        .button {
+            display: inline-block;
+            border-radius: 20%;
+            /* 角丸       */
+            font-size: 24pt;
+            /* 文字サイズ */
+            text-align: center;
+            /* 文字位置   */
+            cursor: pointer;
+            /* カーソル   */
+            padding: 12px 13px;
+            /* 余白       */
+            background: #cccccc;
+            /* 背景色     */
+            color: #595959;
+            /* 文字色     */
+            line-height: 1em;
+            /* 1行の高さ  */
+            transition: .3s;
+            /* なめらか変化 */
+            box-shadow: 1px 1px 12px #666666;
+            /* 影の設定 */
+            border: 2px solid #cccccc;
+            /* 枠の指定 */
+            margin: 100px;
+            font-family: 'M PLUS Rounded 1c', sans-serif;
+        }
+
+        .button:hover {
+            box-shadow: none;
+            /* カーソル時の影消去 */
+            color: #cccccc;
+            /* 背景色     */
+            background: #595959;
+            /* 文字色     */
+        }
+
+        .div {
+            margin: 50px;
+        }
+        img{
+            margin-top: 50px;
+        }
+    </style>
+    <div class="bg_pattern ZigZag_3D"></div>
+    <div style="text-align: center">
+        <!-- <img src="./huku/cardigan.png" width="300px" height="300px"> -->
+        <script>
+            var x = 16;
+            var hansode = "今日は半袖のシャツだと快適に過ごせます。";
+            var nagasode = "今日は長袖のシャツだと快適に過ごせます。";
+            var cardigan = "今日はカーディガンだと快適に過ごせます。";
+            var sweater = "今日はコートだと快適に過ごせます。";
+            var coat = "今日はコートだと快適に過ごせます。";
+            var dawn = "今日はダウンだと快適に過ごせます。";
+            var tn = window.localStorage.getItem("result");
+            var x = window.localStorage.getItem("result1");
+            console.log(tn);
+
+            
+            if (tn >= 25) {
+                document.getElementById("edit-area").innerHTML = hansode;
+                document.write('<img src="./huku/hansode-syatu.png" width="300px" height="300px">');
+            } else if (tn >= 20 && tn <= 25) {
+                document.getElementById("edit-area").innerHTML = nagasode;
+                document.write('<img src="./huku/nagasode-syatu.png" width="400px" height="300px">');
+            } else if (tn >= 15 && tn <= 20) {
+                document.getElementById("edit-area").innerHTML = cardigan;
+                document.write('<img src="./huku/cardigan.png" width="400px" height="300px">');
+            } else if (tn >= 10 && tn <= 15) {
+                document.getElementById("edit-area").innerHTML = sweater;
+                document.write('<img src="./huku/sweater.png" width="300px" height="300px">');
+            } else if (tn >= 5 && tn <= 10) {
+                document.getElementById("edit-area").innerHTML = coat;
+                document.write('<img src="./huku/coat.png" width="300px" height="350px">');
+            } else if (tn <= 5) {
+                document.getElementById("edit-area").innerHTML = dawn;
+                document.write('<img src="./huku/dawn.png" width="300px" height="300px">');
+            }
+        </script>
+    </div>
+    <div style="text-align: center">
+        <a href="javascript:hoge1()" class="button">コーデを見る</a>
+    </div>
+    <div style="text-align:center">
+        <a href="javascript:hoge2()" class="button">前の画面へ戻る</a>
+    </div>
+    <script>
+        var db = firebase.firestore();
+        var test2 = db.collection("test").doc("url");
+        //     var test2 = JSON.parse(test);
+        // Object.keys("cardigan").forEach(function (test){
+        //     console.log(test);
+        //   });
+        // if (x >= 25) {
+        //     document.getElementById("edit-area").innerHTML = hansode;
+        //         } else if(x >= 20 && x <= 25){
+        //             document.getElementById("edit-area").innerHTML = nagasode;
+        //         } else if(x >= 15 && x <= 20){
+        //             document.getElementById("edit-area").innerHTML = cardigan;
+        //         } else if(x >= 10 && x <= 15){
+        //             document.getElementById("edit-area").innerHTML = sweater;
+        //         } else if(x >= 5 && x <= 10){
+        //             document.getElementById("edit-area").innerHTML = coat;
+        //         }
+        // function hoge() {
+        //     location.href = test2;
+        // }
+        //[object Object]を表示してたやつ
+        // document.getElementById("test").innerHTML = test2.cardigan;
+
+        //性別によりfirebaseからURLを取得
+        function hoge1() {
+            docRef = db.collection("test").doc("url");
+            docRef.get().then((doc) => {
+                if (x == "男性"){
+                if (tn >= 25) {
+                    location.href = doc.data().menhansode;
+                } else if (tn >= 20 && tn <= 25) {
+                    location.href = doc.data().mennagasode;
+                } else if (tn >= 15 && tn <= 20) {
+                    location.href = doc.data().mencardigan;
+                } else if (tn >= 10 && tn <= 15) {
+                    location.href = doc.data().mensweater;
+                } else if (tn >= 5 && tn <= 10) {
+                    location.href = doc.data().mencoat;
+                } else if (tn <= 5) {
+                    location.href = doc.data().mendown;
+                }
+            }else{
+                if (tn >= 25) {
+                    location.href = doc.data().womenhansode;
+                } else if (tn >= 20 && tn <= 25) {
+                    location.href = doc.data().womennagasode;
+                } else if (tn >= 15 && tn <= 20) {
+                    location.href = doc.data().womencardigan;
+                } else if (tn >= 10 && tn <= 15) {
+                    location.href = doc.data().womensweater;
+                } else if (tn >= 5 && tn <= 10) {
+                    location.href = doc.data().womencoat;
+                } else if (tn <= 5) {
+                    location.href = doc.data().womendown;
+                }
+            }
+                
+            });
+        }
+        function hoge2(){
+            location.href='./tenki.html'
+        }
+
+    </script>
+</body>
+
+</html>
